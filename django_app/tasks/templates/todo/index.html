@@ -1,0 +1,38 @@
+{% extends "todo/layout.html" %}
+
+{% block content %}
+
+<h3>todo list</h3>
+
+<body>
+    <div>
+        <div>
+            <div>
+                <h1>Todo App</h1>
+                <form action="" method="post">{% csrf_token %}
+                    <div>
+                        <input type="text" id="title" class="" name="title" placeholder="category">
+                        <input type="text" id="note" class="" name="note" placeholder="what todo?" required>
+                        <input type="date" id="deadline" class="deadline" name="deadline">
+                    </div>
+                    <button class="Add" name="Add" type="submit"><i>Add</i></button>
+                </form>
+
+            </div>
+
+            <ul>
+                {% for todo in todos %}
+                <li>
+                    <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ todo.id }}" value="{{ todo.id }}">
+                    <label for="{{ todo.id }}"><span class="complete-">{{ todo.title }}</span></label>
+                    <label for="{{ todo.id }}"><span class="complete-">{{ todo.note }}</span></label>
+                    <!--<span class="category-{{ todo.category }}">{{ todo.category }}</span>-->
+                    <strong class="taskDate"><i class="fa fa-calendar"></i>{{ todo.created_date }} - {{ todo.deadline }}</strong>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
